@@ -1,0 +1,37 @@
+{
+    "bec623a5-899b-4cec-a37e-d4e5eae46793": [{
+        "propCoord": {
+            "lat": '',
+            "lon": ''
+        },
+        "propInfo": {
+            "mainStreet": '',
+            "firstStreet": '',
+            "secondStreet": '',
+            "doorNumber": '',
+            "currentPrice": '',
+            "isRented": ''
+        },
+        "propDescription": {
+            "bedroomCount": '',
+            "bathroomCount": '',
+            "hasKitchen": '',
+            "hasGarage": '',
+            "hasCourtyard": ''
+        },
+        "propExtraData": {
+            "Anotations": '',
+            "GMapsURL": '',
+            "Owner": '',
+            "ImgLink1": '',
+            "ImgLink2": '',
+            "ImgLink3": '',
+            "AddedTimestamp": Date.now()
+        },
+        "propInternalIdentifier": {
+            "uuid": ''
+        }
+
+    }]
+}
+

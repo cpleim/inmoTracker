@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Google Maps Multiple Markers</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKGCkXsY7vISfMmXyf1mwSINsb_5jZZGg" type="text/javascript"></script>
+</head>
+
+<body>
+    <div id="map" style="width: 1080px; height: 720px;"></div>
+    <script type="text/javascript">
+
+        //Set array with available locations
+        var locations = [
+            ['Altos de Bulevar - U$S 26.000', -32.285656, -58.062591, 4],
+            ['Vizconde de Maua 1012 - $11.000', -32.316823, -58.078903, 5],
+            ['Florida 1312 bis - $12.000', -32.316997, -58.078612, 3],
+            ['Vizconde de Maua 712(02) - $13.000', -32.322479, -58.079477, 2],
+            ['Charruas 1094 - $---', -32.314254, -58.083273, 2],
+            ['Colon 1021 - $---', -32.321640, -58.086865, 2]
+        ];
+
+            var contentList = [
+            ['<div id="content">' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h1 id="firstHeading" class="firstHeading">Altos de Bulevar</h1>' +
+            '<div id="bodyContent">' +
+            '<p><b>Republica de Bolivia y Joaquin Suarez.</b> <p>Precio: <b>U$S 26.000</b></p>' +
+            '<p>- 15mt de Frente x 31mt de Fondo (462mt2)</p>' +
+            '</div>' +
+            '</div>'],
+
+            ['<div id="content">' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h1 id="firstHeading" class="firstHeading">Vizconde de Maua 1012</h1>' +
+            '<div id="bodyContent">' +
+            '<p><i>Alquiler </i><b>Entre Uruguay y Florida.</b> <p>Precio: <b>$11.000</b></p>' +
+            '<p>-1 Dormitorio</p>' +
+            '<p>-1 Baño</p>' +
+            '<p>-Cocina y Patio</p>' +
+            '</div>' +
+            '</div>'],
+
+            ['<div id="content">' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h1 id="firstHeading" class="firstHeading">Florida 1312bis</h1>' +
+            '<div id="bodyContent">' +
+            '<p><i>Alquiler </i><b>Entre Vizconde y Varela.</b> <p>Precio: <b>$12.000</b></p>' +
+            '<p>-2 Dormitorio</p>' +
+            '<p>-1 Baño</p>' +
+            '<p>-Cocina y Patio</p>' +
+            '</div>' +
+            '</div>'],
+
+            ['<div id="content">' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h1 id="firstHeading" class="firstHeading">Vizconde de Maua 712. Apto.02</h1>' +
+            '<div id="bodyContent">' +
+            '<p><i>Alquiler </i><b>Entre Colon y 25 de Mayo.</b> <p>Precio: <b>$13.000</b></p>' +
+            '<p>-1 Dormitorio</p>' +
+            '<p>-1 Baño con ducha</p>' +
+            '<p>-Cocina y Patio</p>' +
+            '<img src="https://scontent.fmvd2-1.fna.fbcdn.net/v/t1.0-9/47382899_2132082106811939_2822849594390478848_o.jpg?_nc_cat=109&_nc_ht=scontent.fmvd2-1.fna&oh=441ab61da6427c53f5297e3400645f57&oe=5CB13151" alt="Smiley face" height="112" width="112">' +
+            '<img src="https://scontent.fmvd3-1.fna.fbcdn.net/v/t1.0-9/47134742_2132082203478596_1266272172653936640_o.jpg?_nc_cat=110&_nc_ht=scontent.fmvd3-1.fna&oh=1b7d1f8eaeb66fa9af61b1522103788b&oe=5C662F11" alt="Smiley face" height="112" width="112">' +
+            '<img src="https://scontent.fmvd3-1.fna.fbcdn.net/v/t1.0-9/47391731_2132082086811941_5027990541229359104_n.jpg?_nc_cat=110&_nc_ht=scontent.fmvd3-1.fna&oh=da47e15b6630a2e4f45f5cee93c4f49e&oe=5C6E428B" alt="Smiley face" height="112" width="112">' +
+            '</div>' +
+            '</div>']
+
+            ];
+
+        //init
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: new google.maps.LatLng(-32.317516, -58.080191),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        //fill map with makers
+        var marker, infowindow, i;
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map,
+                title: locations[i][0]
+
+            });
+
+            //Infowindows
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infowindow.setContent(String(contentList[i]));
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+
+            infowindow = new google.maps.InfoWindow({
+    content: String(contentList[i])
+  });
+        }
+    </script>
+</body>
+
+</html>
